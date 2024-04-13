@@ -1,4 +1,5 @@
-msg = input("Enter the message you'd like to encrypt: ")
+msg = input("Enter your message: ")
+choice = input("Are you encrytping or decrypting this message?")
 key = "lightningmcqueen"
 
 def cipher(msg, key, mode=1):
@@ -8,7 +9,7 @@ def cipher(msg, key, mode=1):
     #Iterate through user message
     for char in msg:
         #Accounting for spaces in the message
-        if not msg.isAlpha():
+        if not char.isalpha():
             message += char
         else: 
             key_char = key[key_index % len(key)]
@@ -21,9 +22,18 @@ def cipher(msg, key, mode=1):
             
     return message
 
-def encrypt(msg, key):
+
+def encryption(msg, key):
     return cipher(msg, key)
 
-def decrypt(msg, key):
+
+def decryption(msg, key):
     return cipher(msg,key, -1)
 
+if choice.lower() in ("d", "decrypt", "decrypting", "decryption"):
+    decrypt = decryption(msg,key)
+    print(f'Decrypted message:',decrypt)  
+elif choice.lower() in ("e", "encrypt", "encrypting", "encryption"):
+    encrypt = encryption(msg,key)
+    print(f'Encrypted message:',encrypt)
+    print(f'key: ',key)
