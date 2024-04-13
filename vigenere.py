@@ -4,7 +4,7 @@ key = "lightningmcqueen"
 
 def cipher(msg, key, mode=1):
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    message = ' '
+    message = ''
     key_index = 0
     #Iterate through user message
     for char in msg:
@@ -12,12 +12,14 @@ def cipher(msg, key, mode=1):
         if not char.isalpha():
             message += char
         else: 
+            #Finding correct key 
             key_char = key[key_index % len(key)]
             key_index += 1
+            #Define the shift
             shift = alphabet.index(key_char)
             index = alphabet.find(char)
             newIndex = (index + shift*mode) % len(alphabet)
-            
+            #Add key to en/decrypted message
             message += alphabet[newIndex]
             
     return message
